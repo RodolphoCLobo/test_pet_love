@@ -10,4 +10,10 @@ class Person < ApplicationRecord
   def starts_with_a?
     self.name.first.downcase == 'a'
   end
+
+  def total_monthly_cost
+    result = 0
+    self.pets.pluck(:monthly_cost).each { |monthly_cost| result += monthly_cost }
+    result
+  end
 end

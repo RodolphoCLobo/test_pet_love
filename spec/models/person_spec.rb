@@ -30,7 +30,7 @@ RSpec.describe Person, type: :model do
     end
 
     describe '#starts_with_a?' do
-      context "when personal name start with 'a'." do
+      context "when person name start with 'a'." do
         it "should return true." do
           person = build(:adult, { name: 'Axl Rose' })
 
@@ -43,6 +43,27 @@ RSpec.describe Person, type: :model do
           person = build(:adult)
 
           expect(person.starts_with_a?).to eq(false)
+        end
+      end
+    end
+
+    describe '#total_monthly_cost' do
+      context "when the person has a pet." do
+        it "should return monthly cost." do
+          person = create(:adult)
+          create(:pet_1, { person: person, breed: create(:breed_1) })
+
+          expect(person.total_monthly_cost).to eq(177.99)
+        end
+      end
+
+      context "when the person has more than one pet." do
+        it "should return the sum of monthly costs." do
+          person = create(:adult)
+          create(:pet_1, { person: person, breed: create(:breed_1) })
+          create(:pet_2, { person: person, breed: create(:breed_2) })
+
+          expect(person.total_monthly_cost).to eq(177.99 + 407.99)
         end
       end
     end

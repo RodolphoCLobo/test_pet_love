@@ -15,5 +15,13 @@ FactoryBot.define do
       person
       breed
     end
+
+    factory :pet_3 do
+      name { 'Jaime' }
+      monthly_cost { 600.00 }
+
+      person
+      breed
+    end
   end
 end
