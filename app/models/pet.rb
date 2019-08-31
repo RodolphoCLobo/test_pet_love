@@ -1,4 +1,3 @@
 class Pet < ApplicationRecord
-  validates_presence_of :name
-  validates_presence_of :monthly_cost
+  validates_presence_of :name, :monthly_cost
 end
