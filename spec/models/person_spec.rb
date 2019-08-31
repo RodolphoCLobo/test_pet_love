@@ -12,19 +12,37 @@ RSpec.describe Person, type: :model do
 
   describe 'Instance Methods' do
     describe '#is_adult?' do
-      context 'when person is not an adult' do
-        it "should return false" do
+      context 'when person is not an adult.' do
+        it "should return false." do
           person = build(:child)
 
           expect(person.is_adult?).to eq(false)
         end
       end
 
-      context 'when person is an adult' do
-        it "should return true" do
+      context 'when person is an adult.' do
+        it "should return true." do
           person = build(:adult)
 
           expect(person.is_adult?).to eq(true)
+        end
+      end
+    end
+
+    describe '#starts_with_a?' do
+      context "when personal name start with 'a'." do
+        it "should return true." do
+          person = build(:adult, { name: 'Axl Rose' })
+
+          expect(person.starts_with_a?).to eq(true)
+        end
+      end
+
+      context "when person name doesn't start with 'a'." do
+        it "should return true." do
+          person = build(:adult)
+
+          expect(person.starts_with_a?).to eq(false)
         end
       end
     end

@@ -11,5 +11,9 @@ FactoryBot.define do
     factory :breed_3 do
       name { 'Andorinha' }
     end
+
+    factory :breed_4 do
+      name { 'Gato' }
+    end
   end
 end
