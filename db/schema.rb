@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2019_08_31_033000) do
   create_table "pets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.float "monthly_cost"
+    t.integer "person_id"
+    t.integer "breed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
