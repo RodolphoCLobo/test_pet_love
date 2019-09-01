@@ -1,24 +1,69 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Resolução do teste de processo seletivo da Petlove:
 
-Things you may want to cover:
+* Versão do Ruby
 
-* Ruby version
+  - 2.6.0
 
-* System dependencies
+* Dependências do Sistema
 
-* Configuration
+  - mysql
 
-* Database creation
+* Configurações
 
-* Database initialization
+  - utilize o comando `gem install bundle ; bundle install` no diretório da aplicação.
 
-* How to run the test suite
+* Criar Banco de Dados
 
-* Services (job queues, cache servers, search engines, etc.)
+  - utilize o comando `rake db:create` no diretório da aplicação.
 
-* Deployment instructions
+* Criar Migration
 
-* ...
+  - utilize o comando `rake db:migrate` no diretório da aplicação.
+
+* Popular Banco de Dados
+
+  - utilize o comando `rake db:seed` no diretório da aplicação.
+
+* Testes
+
+  - utilize o comando `bundle exec rspec spec` no diretório da aplicação.
+  - ao terminar, será gerado a análise da cobertura de testes, basta copiar o caminho do arquivo
+  `./coverage/index.html` e colar no navegador.
+
+## Queries
+
+* Qual é o custo médio dos animais do tipo cachorro?
+
+  ```ruby
+  pets = Breed.find_by(name: 'Cachorro').pets
+  pets.sum(:monthly_cost) / pets.count
+  ```
+
+* Quantos cachorros existem no sistema?
+
+  ```ruby
+  Breed.find_by(name: 'Cachorro').pets.count
+  ```
+
+* Qual o nome dos donos dos cachorros (Array de nomes)?
+
+  ```ruby
+  Breed.find_by(name: 'cachorro').pets.map(&:person).map(&:name)
+  ```
+* Retorne as pessoas ordenando pelo custo que elas tem com os animais (Maior para menor).
+
+  ```ruby
+  Person.all.sort_by { |person| person.pets.sum(:monthly_cost) }.reverse
+  ```
+
+* Levando em consideração o custo mensal, qual será o custo de 3 meses de cada pessoa?
+
+  ```ruby
+  Person.all.map { |person| { "#{person.name}" => (person.pets.sum(:monthly_cost) * 3) } }
+  ```
+
+## Contribuidores
+
+ - Rodolpho Corrêa Lobo de Azeredo
