@@ -37,8 +37,7 @@ Resolução do teste de processo seletivo da Petlove:
 * Qual é o custo médio dos animais do tipo cachorro?
 
   ```ruby
-  pets = Breed.find_by(name: 'Cachorro').pets
-  pets.sum(:monthly_cost) / pets.count
+  Breed.find_by(name: 'Cachorro').pets.average(:monthly_cost).to_f
   ```
 
 * Quantos cachorros existem no sistema?
